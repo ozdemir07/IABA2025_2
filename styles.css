@@ -124,7 +124,7 @@ body {
   z-index: 10;
 
   /* overlay behavior */
-  mix-blend-mode: screen; /* or 'screen', 'overlay', etc */
+  mix-blend-mode: lighten; /* or 'screen', 'overlay', etc */
 }
 
 #control-panel.visible ~ #teads-logo {
