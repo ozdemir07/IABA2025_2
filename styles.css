@@ -1,0 +1,133 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  color: white;
+  font-family: sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Control Panel */
+#control-panel {
+  position: absolute;
+  bottom: 1rem;   /* instead of top */
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#control-panel.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#control-panel label {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+#control-panel div {
+  margin-top: 0.5rem;
+}
+
+#control-panel input[type="range"] {
+  vertical-align: middle;
+}
+
+#control-panel span {
+  font-size: 0.8rem;
+  margin-left: 6px;
+}
+
+/* Glitch Overlay */
+#glitch-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Image Grid */
+#image-grid {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 0;
+  gap: 12px;
+  padding: 12px;
+  background: black;
+}
+
+/* Each grid cell */
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  overflow: hidden;
+}
+
+/* Square images scale to short edge */
+.cell img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  background: black;
+  display: block;
+}
+
+/* Play Button */
+#control-panel button {
+  background: #222;
+  color: white;
+  border: 1px solid #555;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+#control-panel button:hover {
+  background: #444;
+}
+
+/* TEADS Logo */
+#teads-logo {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 120px; /* adjust as needed */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 10;
+
+  /* overlay behavior */
+  mix-blend-mode: screen; /* or 'screen', 'overlay', etc */
+}
+
+#control-panel.visible ~ #teads-logo {
+  opacity: 1;
+}
+

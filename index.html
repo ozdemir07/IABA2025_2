@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IABA2025 Looper</title>
+   <!-- add icon link -->
+  <link rel="icon" href="assets/teads-logo.ico"
+    type="image/x-icon" />  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Control Panel -->
+  <div id="control-panel">
+    <label><input type="checkbox" class="group-toggle" value="plans" checked> Plans</label>
+    <label><input type="checkbox" class="group-toggle" value="sections" checked> Sections</label>
+    <label><input type="checkbox" class="group-toggle" value="site-plans" checked> Site Plans</label>
+    <label><input type="checkbox" class="group-toggle" value="diagrams" checked> Diagrams</label>
+    <label><input type="checkbox" id="toggle-glitch" checked> Glitch Effect</label>
+
+    <div>
+      <label>Frequency: 
+        <input type="range" id="freq-slider" min="1" max="60" step="1" value="2">
+      </label>
+      <span id="freq-value">2 Hz</span>
+    </div>
+
+    <div>
+      <label>Glitch Intensity: 
+        <input type="range" id="glitch-slider" min="0" max="1" step="0.05" value="0.15">
+      </label>
+      <span id="glitch-value">0.15</span>
+    </div>
+
+    <div>
+      <button id="play-pause">⏸ Pause</button>
+    </div>
+  </div>
+
+  <img id="teads-logo" src="media/teads-logo.png" alt="TEADS Logo">
+
+  <!-- Image Grid -->
+  <div id="image-grid"></div>
+
+  <!-- Glitch Overlay -->
+  <video id="glitch-overlay" autoplay loop muted>
+    <source src="media/glitch_overlay.mp4" type="video/mp4">
+  </video>
+
+  <script src="main.js"></script>
+</body>
+</html>
