@@ -4,15 +4,16 @@ let interval;
 let timer = null;
 let isPlaying = true; // slideshow starts running
 
+// DOM elements
 const grid = document.getElementById("image-grid");
 const glitch = document.getElementById("glitch-overlay");
 
-// sliders & controls
 const freqSlider = document.getElementById("freq-slider");
 const freqValue = document.getElementById("freq-value");
 const glitchSlider = document.getElementById("glitch-slider");
 const glitchValue = document.getElementById("glitch-value");
 const playPauseBtn = document.getElementById("play-pause");
+const highResToggle = document.getElementById("high-res-toggle");
 
 // Load manifest.json
 fetch("data/manifest.json")
@@ -87,9 +88,11 @@ function renderGrid() {
 
 // Update images with looping index
 function updateImages() {
+  const useHighRes = highResToggle.checked;
+
   document.querySelectorAll("#image-grid img").forEach(img => {
     const group = img.dataset.group;
-    const arr = groups[group];
+    const arr = useHighRes ? groups[group].high : groups[group].low;
     if (arr && arr.length > 0) {
       img.src = arr[index % arr.length];
     }
@@ -100,6 +103,9 @@ function updateImages() {
 document.querySelectorAll(".group-toggle").forEach(cb =>
   cb.addEventListener("change", renderGrid)
 );
+
+// Resolution toggle
+highResToggle.addEventListener("change", updateImages);
 
 // Glitch toggle
 document.getElementById("toggle-glitch").addEventListener("change", e => {

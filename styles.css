@@ -53,6 +53,13 @@ body {
   margin-left: 6px;
 }
 
+#control-panel .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 /* Glitch Overlay */
 #glitch-overlay {
   position: absolute;
