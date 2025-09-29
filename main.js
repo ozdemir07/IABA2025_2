@@ -15,11 +15,39 @@ const glitchValue = document.getElementById("glitch-value");
 const playPauseBtn = document.getElementById("play-pause");
 const highResToggle = document.getElementById("high-res-toggle");
 
+// -----------------
+// 🔧 Preload helper
+// -----------------
+function preloadImages(arr) {
+  arr.forEach(src => {
+    const img = new Image();
+    img.src = src; // browser caches image
+  });
+}
+
+function preloadAll(groups) {
+  // Preload LOW first
+  Object.values(groups).forEach(group => {
+    if (group.low) preloadImages(group.low);
+  });
+
+  // Then HIGH in background (non-blocking)
+  setTimeout(() => {
+    Object.values(groups).forEach(group => {
+      if (group.high) preloadImages(group.high);
+    });
+  }, 1000); // delay ensures low-res is cached first
+}
+
 // Load manifest.json
 fetch("data/manifest.json")
   .then(res => res.json())
   .then(data => {
     groups = data;
+
+    // ✅ Preload all images
+    preloadAll(groups);
+
     renderGrid();
     showPanel();
 
